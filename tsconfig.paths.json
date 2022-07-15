@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "modules": ["app/modules"],
+      "modules/*": ["app/modules/*"],
+      "core": ["app/core"],
+      "core/*": ["app/core/*"],
+      "shared": ["app/shared"],
+      "shared/*": ["app/shared/*"],
+      "assets": ["assets"],
+      "assets/*": ["assets/*"],
+      "styles": ["styles"],
+      "styles/*": ["styles/*"]
+    }
+  }
+}
