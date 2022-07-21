@@ -12,7 +12,7 @@ export default interface ButtonProps
   type?: "button" | "submit" | "reset";
 
   // variant
-  variant?: "text" | "contained" | "outlined";
+  variant?: "contained" | "outlined";
   href?: string; // To create link
   color?: "success" | "error" | "primary" | "secondary";
   size?: "small" | "medium" | "large";
