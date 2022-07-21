@@ -4,18 +4,14 @@ import React from "react";
 import FormWrapper from "../wrapper/wrapper.component";
 import styles from "./button.module.scss";
 import ButtonProps from "./button.types";
+import theme from "styles/theme";
 
 const FormButton = (props: ButtonProps) => {
   const {
     name,
     value,
     type = "submit",
-    variant = "contained",
-    disabled = false,
     href,
-    color = "primary",
-    size = "medium",
-    fullWidth = false,
     isUploadBtn = false,
     uploadType,
     hasIcon = false,
@@ -25,33 +21,32 @@ const FormButton = (props: ButtonProps) => {
     onClick,
     className,
     sx,
-    disableBottom = false,
-    disableTop = false,
-    alignItems = "center",
-    justifyContent = "center",
     ...rest
   } = props;
 
   return (
     <FormWrapper
-      disableBottom={disableBottom}
-      disableTop={disableTop}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
+      disableBottom={rest.disableBottom || false}
+      disableTop={rest.disableTop || false}
+      alignItems={rest.alignItems || "center"}
+      justifyContent={rest.justifyContent || "center"}
     >
       {" "}
       <Button
         value={value}
         id={value}
         type={type}
-        variant={variant}
-        disabled={disabled}
+        variant={rest.variant || "contained"}
+        disabled={rest.disabled || false}
         href={href}
-        color={color}
-        size={size}
-        fullWidth={fullWidth}
+        color={rest.color || "primary"}
+        size={rest.size || "medium"}
+        fullWidth={rest.fullWidth}
         onClick={onClick}
-        sx={{ ...sx, background: variant === "text" ? "none" : "default" }}
+        sx={{
+          ...sx,
+          background: rest.variant === "text" ? "none" : "default",
+        }}
         className={`${className} ${styles["button"]}`}
         startIcon={hasIcon && iconPos === "start" && icon}
         endIcon={hasIcon && iconPos === "end" && icon}

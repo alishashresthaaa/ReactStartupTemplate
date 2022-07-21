@@ -10,20 +10,19 @@ export default interface CheckboxProps
   // basic
   label: string;
   labelPlacement?: "top" | "start" | "bottom" | "end";
-  name: string;
+  value?: boolean | string;
 
   // variant
-  size: "small" | "medium";
-  color: "default" | "error" | "success" | "secondary";
+  size?: "small" | "medium";
+  color?: "default" | "error" | "success" | "secondary";
 
   // attributes
   defaultChecked?: boolean;
-  disabled?: boolean;
 
   //   icon
   icon?: ReactNode;
   checkedIcon?: ReactNode;
 
   //   control the checkbox
-  checked: boolean; // with help of onChange
+  checked?: boolean; // with help of onChange
 }

@@ -1,8 +1,7 @@
-import SvgIcon from "@mui/material/SvgIcon";
 import Link from "@mui/material/Link";
 import React from "react";
-import LinkProps from "./link.types";
 import FormWrapper from "../wrapper/wrapper.component";
+import LinkProps from "./link.types";
 
 const FormLink = (props: LinkProps) => {
   const {
@@ -13,18 +12,15 @@ const FormLink = (props: LinkProps) => {
     variant = "button",
     className,
     sx,
-    disableBottom = false,
-    disableTop = false,
-    alignItems = "center",
-    justifyContent = "center",
+    ...rest
   } = props;
 
   return (
     <FormWrapper
-      disableBottom={disableBottom}
-      disableTop={disableTop}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
+      disableBottom={rest.disableBottom || false}
+      disableTop={rest.disableTop || false}
+      alignItems={rest.alignItems || "center"}
+      justifyContent={rest.justifyContent || "center"}
     >
       <Link
         variant={variant}

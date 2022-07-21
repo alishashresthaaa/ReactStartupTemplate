@@ -8,12 +8,8 @@ export interface RadioProps
     FormWrapperProps {
   radioButtonLabel: string;
   radioList: RadioButtonProps[];
-  name: string;
-  value: string;
-  defaultValue: string;
-  required?: boolean;
-  error?: boolean;
-  errorText?: string;
+  value?: string;
+  defaultValue?: string;
 }
 
 export interface RadioButtonProps {
@@ -21,5 +17,5 @@ export interface RadioButtonProps {
   labelPlacement?: "top" | "start" | "bottom" | "end";
   value: string;
   disabled?: boolean;
-  color: "default" | "success" | "error";
+  color?: "default" | "success" | "error";
 }
