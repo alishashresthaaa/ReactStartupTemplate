@@ -7,8 +7,6 @@ export default interface LinkProps
   extends FormCommonTypes,
     FormEventTypes,
     FormWrapperProps {
-  name?: string;
-  disabled?: boolean;
   color?: "success" | "error" | "primary" | "secondary";
   underline?: "always" | "hover" | "none";
   variant?: "body1" | "button";

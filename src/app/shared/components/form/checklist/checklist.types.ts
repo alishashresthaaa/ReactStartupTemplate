@@ -1,13 +1,17 @@
 import CheckboxProps from "../checkbox/checkbox.types";
+import FormCommonTypes from "../types/common.types";
 import FormEventTypes from "../types/events.type";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
 export default interface CheckListProps
-  extends FormEventTypes,
+  extends FormCommonTypes,
+    FormEventTypes,
     FormWrapperProps {
+  name: string;
   checklistLabel: string;
-  checklist: CheckboxProps[];
+  checklist: any[];
   error?: boolean;
-  errorText?: string;
+  helperText?: string;
   required?: boolean;
+  setValue?: (name: any, selectedItem: any) => void;
 }

@@ -8,21 +8,24 @@ export default interface ButtonProps
     FormEventTypes,
     FormWrapperProps {
   // basic
-  name?: string;
   value?: string;
   type?: "button" | "submit" | "reset";
 
   // variant
   variant?: "text" | "contained" | "outlined";
-  disabled?: boolean;
   href?: string; // To create link
   color?: "success" | "error" | "primary" | "secondary";
   size?: "small" | "medium" | "large";
-  fullWidth?: boolean;
+
+  // Is button upload type
   isUploadBtn?: boolean;
   uploadType?: HTMLInputElement;
+
+  // has Button icon?
   hasIcon?: boolean;
   iconPos?: "start" | "end";
   icon?: ReactNode;
+
+  // Is button has loader icon after clicking
   loader?: boolean;
 }

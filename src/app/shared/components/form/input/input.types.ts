@@ -1,5 +1,6 @@
 import { SxProps, Theme } from "@mui/material/styles";
 import { ReactNode } from "react";
+import { Control, FieldError } from "react-hook-form";
 import FormCommonTypes from "../types/common.types";
 import FormEventTypes from "../types/events.type";
 import FormWrapperProps from "../wrapper/wrapper.types";
@@ -9,9 +10,10 @@ export default interface InputProps
     FormEventTypes,
     FormWrapperProps {
   // basic
-  label: string;
+  label?: string;
   value?: string;
   type?: string;
+  name: string;
 
   // variant
   variant?: "outlined" | "filled" | "standard";
@@ -24,13 +26,8 @@ export default interface InputProps
   autoFocus?: boolean;
   autoComplete?: "on" | "off";
 
-  // display error
-  error?: boolean;
-  errorText?: string;
-
   // extras
   defaultValue?: string;
-  ref?: any;
 
   // for textarea
   multiline?: boolean;
@@ -44,4 +41,7 @@ export default interface InputProps
   //   styles
   inputLabelStyles?: SxProps<Theme>;
   inputHelperTextStyles?: SxProps<Theme>;
+
+  // For react hook form
+  control?: any;
 }
