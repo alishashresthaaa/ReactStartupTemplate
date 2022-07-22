@@ -27,7 +27,7 @@ const FormRadio = (props: RadioProps) => {
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || radioList[0].value}
         render={({ field, fieldState, formState }) => {
           return (
             <FormControl
@@ -39,7 +39,6 @@ const FormRadio = (props: RadioProps) => {
             >
               <FormLabel>{radioButtonLabel}</FormLabel>
               <RadioGroup
-                defaultValue={defaultValue}
                 name={field.name}
                 value={field.value || ""}
                 onChange={field.onChange}
@@ -60,9 +59,8 @@ const FormRadio = (props: RadioProps) => {
                   );
                 })}
               </RadioGroup>
-              <FormHelperText>
-                {fieldState?.error?.message &&
-                  `${fieldState?.error?.message + " "}`}
+              <FormHelperText error={fieldState.invalid}>
+                {fieldState?.invalid ? `${fieldState?.error?.message}` : " "}
               </FormHelperText>
             </FormControl>
           );

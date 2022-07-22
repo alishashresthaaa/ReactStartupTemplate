@@ -95,7 +95,7 @@ const FormCheckList = (props: CheckListProps) => {
               <FormHelperText error={name in formState?.errors ? true : false}>
                 {name in formState?.errors
                   ? `${fieldState.error?.message + " "}`
-                  : null}
+                  : " "}
               </FormHelperText>
             </FormControl>
           );

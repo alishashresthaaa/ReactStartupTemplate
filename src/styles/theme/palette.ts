@@ -92,4 +92,9 @@ export const theme_palette = {
     900: "#e5e5e5",
     fff: "#ffffff",
   },
+  // action: {
+  //   active: "",
+  //   hover: "",
+  //   selected: "",
+  // },
 };

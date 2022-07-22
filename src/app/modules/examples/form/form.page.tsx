@@ -50,7 +50,6 @@ const FormExample = () => {
             radioList={genderData}
             name="gender"
             control={control}
-            defaultValue={genderData[1].value}
           />
           <FormAutocomplete
             name="nationality"

@@ -18,7 +18,7 @@ import { theme_typography } from "./typography";
 const theme = createTheme({
   palette: theme_palette,
   typography: theme_typography,
-  components: theme_components,
+  components: theme_components as any,
 });
 
 export default responsiveFontSizes(theme);
