@@ -16,6 +16,12 @@ const PaletteExample = React.lazy(
 const ButtonExample = React.lazy(
   () => import("modules/examples/button/button.page")
 );
+const CounterExample = React.lazy(
+  () => import("modules/examples/counter/counter.page")
+);
+const QueryExample = React.lazy(
+  () => import("modules/examples/query/query.page")
+);
 
 export const exampleRoutes: RouteObject[] = [
   {
@@ -26,6 +32,8 @@ export const exampleRoutes: RouteObject[] = [
       { path: "heading", element: <HeadingExample /> },
       { path: "palette", element: <PaletteExample /> },
       { path: "button", element: <ButtonExample /> },
+      { path: "state", element: <CounterExample /> },
+      { path: "query", element: <QueryExample /> },
       { path: "list", element: <NotFoundPage /> },
       { path: "table", element: <NotFoundPage /> },
     ],
