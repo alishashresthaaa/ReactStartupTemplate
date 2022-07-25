@@ -5,6 +5,7 @@ import React from "react";
 import theme from "styles/theme";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { AuthProvider } from "core/utils/auth";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,9 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
         <React.Suspense fallback="...Loading">
-          <AppRoutes />
+          <AuthProvider>
+            <AppRoutes />
+          </AuthProvider>
         </React.Suspense>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
