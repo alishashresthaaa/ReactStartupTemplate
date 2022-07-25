@@ -6,7 +6,7 @@ export const getAllPosts = async () => {
   return response.data;
 };
 
-export const getSinglePost = async (id: number) => {
+export const getSinglePost = async (id: string | any) => {
   const response = await axiosInstance.get(`/posts/${id}`);
   return response.data;
 };

@@ -22,6 +22,9 @@ const CounterExample = React.lazy(
 const QueryExample = React.lazy(
   () => import("modules/examples/query/query.page")
 );
+const SingleQueryExample = React.lazy(
+  () => import("modules/examples/query/singleQuery.page")
+);
 
 export const exampleRoutes: RouteObject[] = [
   {
@@ -34,6 +37,7 @@ export const exampleRoutes: RouteObject[] = [
       { path: "button", element: <ButtonExample /> },
       { path: "state", element: <CounterExample /> },
       { path: "query", element: <QueryExample /> },
+      { path: "query/:id", element: <SingleQueryExample /> },
       { path: "list", element: <NotFoundPage /> },
       { path: "table", element: <NotFoundPage /> },
     ],
