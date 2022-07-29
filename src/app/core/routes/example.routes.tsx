@@ -5,8 +5,12 @@ import React from "react";
 const NotFoundPage = React.lazy(
   () => import("core/pages/notFound/notFound.page")
 );
-
-const FormExample = React.lazy(() => import("modules/examples/form/form.page"));
+const FormExample = React.lazy(
+  () => import("modules/examples/formExample/form/form.page")
+);
+const FormDetailsExample = React.lazy(
+  () => import("modules/examples/formExample/formDetails/formDetails.page")
+);
 const HeadingExample = React.lazy(
   () => import("modules/examples/heading/heading.page")
 );
@@ -32,6 +36,7 @@ export const exampleRoutes: RouteObject[] = [
     element: <DashLayout />,
     children: [
       { path: "form", element: <FormExample /> },
+      { path: "form/details", element: <FormDetailsExample /> },
       { path: "heading", element: <HeadingExample /> },
       { path: "palette", element: <PaletteExample /> },
       { path: "button", element: <ButtonExample /> },

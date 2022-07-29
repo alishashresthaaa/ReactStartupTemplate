@@ -1,16 +1,12 @@
-import { ReactNode } from "react";
-import FormCommonTypes from "../types/common.types";
-import FormEventTypes from "../types/events.type";
+import { LinkProps as MuiLinkProps } from "@mui/material";
+import HookFormProps from "../types/hookform.types";
+import HasIconProps from "../types/icon.types";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
-export default interface LinkProps
-  extends FormCommonTypes,
-    FormEventTypes,
-    FormWrapperProps {
-  color?: "success" | "error" | "primary" | "secondary";
-  underline?: "always" | "hover" | "none";
-  variant?: "body1" | "button";
-  hasIcon?: boolean;
-  iconPos?: "start" | "end";
-  icon?: ReactNode;
+export default interface LinkProps<T>
+  extends FormWrapperProps,
+    HookFormProps<T>,
+    Omit<MuiLinkProps, "alignItems" | "justifyContent">,
+    HasIconProps {
+  name: string;
 }

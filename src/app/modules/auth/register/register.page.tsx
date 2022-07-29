@@ -4,7 +4,7 @@ import FormButton from "shared/components/form/button/button.component";
 import FormInput from "shared/components/form/input/input.component";
 import FormLink from "shared/components/form/link/link.component";
 import { useNavigate } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Control, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import RegisterFormTypes, { registerSchema } from "./register.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -31,28 +31,28 @@ const RegisterPage = () => {
             type="text"
             name="username"
             label="Username"
-            control={control}
+            control={control as unknown as Control<FieldValues, object>}
             fullWidth
           />
           <FormInput
             type="text"
             name="email"
             label="Email"
-            control={control}
+            control={control as unknown as Control<FieldValues, object>}
             fullWidth
           />
           <FormInput
             type="password"
             name="password"
             label="Password"
-            control={control}
+            control={control as unknown as Control<FieldValues, object>}
             fullWidth
           />
           <FormInput
             type="password"
             name="repassword"
             label="Confirm Password"
-            control={control}
+            control={control as unknown as Control<FieldValues, object>}
             fullWidth
           />
           <FormButton name="Register" value="Submit" fullWidth />

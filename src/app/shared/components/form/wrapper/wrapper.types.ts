@@ -8,4 +8,5 @@ export default interface FormWrapperProps {
   row?: boolean;
   alignItems?: "flex-start" | "center" | "flex-end";
   justifyContent?: "flex-start" | "center" | "flex-end";
+  wrapperFullWidth?: boolean;
 }

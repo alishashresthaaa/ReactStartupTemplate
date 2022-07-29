@@ -2,9 +2,7 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import React from "react";
 import FormWrapper from "../wrapper/wrapper.component";
-import styles from "./button.module.scss";
 import ButtonProps from "./button.types";
-import theme from "styles/theme";
 
 const FormButton = (props: ButtonProps) => {
   const {
@@ -19,8 +17,6 @@ const FormButton = (props: ButtonProps) => {
     icon,
     loader = false,
     onClick,
-    className,
-    sx,
     ...rest
   } = props;
 
@@ -30,6 +26,7 @@ const FormButton = (props: ButtonProps) => {
       disableTop={rest.disableTop || false}
       alignItems={rest.alignItems || "center"}
       justifyContent={rest.justifyContent || "center"}
+      wrapperFullWidth={rest.wrapperFullWidth ?? true}
     >
       {" "}
       <Button
@@ -43,10 +40,6 @@ const FormButton = (props: ButtonProps) => {
         size={rest.size || "medium"}
         fullWidth={rest.fullWidth}
         onClick={onClick}
-        sx={{
-          ...sx,
-        }}
-        className={`${className} ${styles["button"]}`}
         startIcon={hasIcon && iconPos === "start" && icon}
         endIcon={hasIcon && iconPos === "end" && icon}
         component={isUploadBtn ? "label" : "button"}

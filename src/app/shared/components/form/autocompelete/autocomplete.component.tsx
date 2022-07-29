@@ -1,11 +1,11 @@
-import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 import React from "react";
-import { Controller } from "react-hook-form";
-import AutocompleteProps from "./autocomplete.types";
+import { Controller, FieldValues } from "react-hook-form";
 import FormWrapper from "../wrapper/wrapper.component";
+import AutocompleteProps from "./autocomplete.types";
 
-const FormAutocomplete = (props: AutocompleteProps) => {
+const FormAutocomplete = (props: AutocompleteProps<FieldValues>) => {
   const { name, control, options, loading, label, ...rest } = props;
   return (
     <FormWrapper
@@ -16,13 +16,12 @@ const FormAutocomplete = (props: AutocompleteProps) => {
         name={name}
         control={control}
         defaultValue={options ? options[0] : {}}
-        render={({ field, fieldState, formState }) => {
+        render={({ field, fieldState }) => {
           return (
             <Autocomplete
               value={field.value || null}
               options={options || []}
               loading={loading || false}
-              // onChange={field.onChange}
               onChange={(_, data) => field.onChange(data)}
               onBlur={field.onBlur}
               renderInput={(params) => (
@@ -32,9 +31,9 @@ const FormAutocomplete = (props: AutocompleteProps) => {
                   label={label}
                   error={!!fieldState.error}
                   helperText={
-                    fieldState.error
+                    !!fieldState.error
                       ? `${fieldState?.error?.message + " "}`
-                      : " "
+                      : (rest.helperText = " ")
                   }
                 />
               )}
@@ -45,7 +44,7 @@ const FormAutocomplete = (props: AutocompleteProps) => {
                 return value ? option.value === (value?.value || value) : false;
               }}
               fullWidth={rest.fullWidth || true}
-              defaultValue={options ? options[0] : {}}
+              defaultValue={options ? options[0] : (rest.defaultValue = {})}
             />
           );
         }}
@@ -54,4 +53,4 @@ const FormAutocomplete = (props: AutocompleteProps) => {
   );
 };
 
-export default FormAutocomplete;
+export default React.memo(FormAutocomplete);

@@ -8,6 +8,7 @@ const FormWrapper = (props: FormWrapperProps) => {
     disableBottom,
     alignItems = "center",
     justifyContent = "center",
+    wrapperFullWidth,
     sx,
     children,
   } = props;
@@ -20,7 +21,7 @@ const FormWrapper = (props: FormWrapperProps) => {
         alignItems: alignItems,
         justifyContent: justifyContent,
       }}
-      fullWidth
+      fullWidth={wrapperFullWidth ?? true}
     >
       {children}
     </FormControl>

@@ -5,6 +5,7 @@ export default interface FormTypes {
   password: string;
   repassword: string;
   email: string;
+  dob: string;
   gender: string;
   hobbies: string[];
   nationality: { text: string; value: string };
@@ -28,9 +29,11 @@ export const formSchema = yup.object({
     .string()
     .email("Invalid email format")
     .required("Email is required"),
+  dob: yup.string().nullable().required("Required"),
   gender: yup.string().required("Gender is required"),
   hobbies: yup
     .array()
+    .required("Hobbies is required")
     .min(1, "Please select any one")
     .of(yup.string().required("Hobbies is required")),
   nationality: yup

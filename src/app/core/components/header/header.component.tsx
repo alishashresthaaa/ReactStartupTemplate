@@ -1,44 +1,58 @@
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import { headerMenuLinks, HeaderMenuLinksType } from "./header.data";
-import FormLink from "shared/components/form/link/link.component";
-import { useNavigate } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import AppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { useAuth } from "core/utils/auth";
+import { useSideNav } from "core/utils/sidenav";
+import FormButton from "shared/components/form/button/button.component";
+import { DRAWER_WIDTH } from "shared/constants";
 
 const Header = () => {
   const auth = useAuth();
-  const navigate = useNavigate();
+
+  const { sidenav, handleDrawerOpen } = useSideNav();
 
   return (
-    <Grid container sx={{ backgroundColor: "#efefef", padding: "1rem" }}>
-      <Grid item xs={1}>
-        Header
-      </Grid>
-      <Grid item xs={8}>
-        <Box display="grid" gridTemplateColumns="repeat(12, 1fr)">
-          {headerMenuLinks.map((link: HeaderMenuLinksType) => {
-            return (
-              <Box gridColumn="span 2" key={link.label}>
-                <FormLink
-                  disableBottom
-                  disableTop
-                  name={link.label}
-                  onClick={() => navigate(link.to)}
-                />
-              </Box>
-            );
-          })}
-        </Box>
-      </Grid>
-      <Grid item xs={3} sx={{ textAlign: "end" }}>
-        <FormLink
+    <AppBar
+      position="fixed"
+      sx={
+        sidenav
+          ? {
+              marginLeft: `${DRAWER_WIDTH}px`,
+              width: `calc(100% - ${DRAWER_WIDTH}px)`,
+            }
+          : {
+              marginLeft: "0px",
+              width: "100%",
+            }
+      }
+    >
+      <Toolbar>
+        <IconButton
+          onClick={handleDrawerOpen}
+          aria-label="open drawer"
+          edge="start"
+          sx={{
+            marginRight: 5,
+            ...(sidenav && { display: "none" }),
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h5" component="div" noWrap sx={{ flexGrow: 1 }}>
+          Welcome, {auth.user}
+        </Typography>
+        <FormButton
           disableBottom
           disableTop
           name={"Logout"}
+          color="success"
+          wrapperFullWidth={false}
           onClick={() => auth.logout()}
         />
-      </Grid>
-    </Grid>
+      </Toolbar>
+    </AppBar>
   );
 };
 

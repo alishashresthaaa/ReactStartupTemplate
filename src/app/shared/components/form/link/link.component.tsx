@@ -1,17 +1,16 @@
 import Link from "@mui/material/Link";
 import React from "react";
+import { FieldValues } from "react-hook-form";
 import FormWrapper from "../wrapper/wrapper.component";
 import LinkProps from "./link.types";
 
-const FormLink = (props: LinkProps) => {
+const FormLink = (props: LinkProps<FieldValues>) => {
   const {
     name,
     onClick,
     color = "primary",
     underline = "hover",
     variant = "button",
-    className,
-    sx,
     ...rest
   } = props;
 
@@ -24,8 +23,6 @@ const FormLink = (props: LinkProps) => {
     >
       <Link
         variant={variant}
-        sx={{ ...sx }}
-        className={className}
         onClick={onClick}
         color={color}
         underline={underline}
