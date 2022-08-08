@@ -7,6 +7,7 @@ import FeedIcon from "@mui/icons-material/Feed";
 import InboxIcon from "@mui/icons-material/Inbox";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 
 export const navMenuItems = [
   {
@@ -28,6 +29,11 @@ export const navMenuItems = [
             icon: <FeedIcon />,
           },
           {
+            name: "MultiStep Form",
+            link: "/examples/multi-step",
+            icon: <FeedIcon />,
+          },
+          {
             name: "Button",
             link: "/examples/button",
             icon: <InboxIcon />,
@@ -36,6 +42,14 @@ export const navMenuItems = [
             name: "Heading",
             link: "/examples/heading",
             icon: <AbcIcon />,
+          },
+          {
+            name: "Tables",
+
+            icon: <TableRestaurantIcon />,
+            items: [
+              { name: "Basic Table", link: "/examples/table/basic-table" },
+            ],
           },
         ],
       },

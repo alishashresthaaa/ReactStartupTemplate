@@ -6,7 +6,7 @@ export const formSlice = createSlice({
   name: "form",
   initialState: initialFormState,
   reducers: {
-    SET_BUS_DATA: (state, action: PayloadAction<FormState>) => {
+    SET_FORM_DATA: (state, action: PayloadAction<FormState>) => {
       state.name = action.payload.name;
       state.password = action.payload.password;
       state.email = action.payload.email;
@@ -17,5 +17,5 @@ export const formSlice = createSlice({
   },
 });
 
-export const { SET_BUS_DATA } = formSlice.actions;
+export const { SET_FORM_DATA } = formSlice.actions;
 export default formSlice.reducer;

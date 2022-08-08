@@ -48,7 +48,7 @@ const DashLayout = () => {
           </Box>
           <NavMenu menu={navMenuItems} />
         </Drawer>
-        <Box component="main">
+        <Box component="main" sx={{ flexGrow: 1 }}>
           <Header />
           <React.Suspense fallback={<>...Loading</>}>
             <Box

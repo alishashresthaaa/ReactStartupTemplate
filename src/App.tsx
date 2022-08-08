@@ -6,7 +6,8 @@ import theme from "styles/theme";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { AuthProvider } from "core/utils/auth";
-import { SideNavProvoder } from "core/utils/sidenav";
+import { SideNavProvider } from "core/utils/sidenav";
+import { MultiStepProvider } from "shared/hooks/useMultiStep";
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,11 @@ function App() {
         <CssBaseline />
         <React.Suspense fallback="...Loading">
           <AuthProvider>
-            <SideNavProvoder>
-              <AppRoutes />
-            </SideNavProvoder>
+            <SideNavProvider>
+              <MultiStepProvider>
+                <AppRoutes />
+              </MultiStepProvider>
+            </SideNavProvider>
           </AuthProvider>
         </React.Suspense>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

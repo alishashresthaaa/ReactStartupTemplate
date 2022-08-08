@@ -7,7 +7,6 @@ const NavMenu = (props: NavMenuProps) => {
   return (
     <List>
       {menu?.map((item: any, index: number) => {
-        console.log(item);
         return <NavMenuItem {...item} key={index} />;
       })}
     </List>

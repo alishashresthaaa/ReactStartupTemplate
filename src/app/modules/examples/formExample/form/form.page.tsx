@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useAppDispatch } from "app/state";
-import { SET_BUS_DATA } from "app/state/modules/form/formSlice";
+import { SET_FORM_DATA } from "app/state/modules/form/formSlice";
 import { Control, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import FormAutocomplete from "shared/components/form/autocompelete/autocomplete.component";
@@ -27,7 +27,7 @@ const FormExample = () => {
   const formSubmitHandler: SubmitHandler<FormTypes> = (data: FormTypes) => {
     navigate("/examples/form/details");
     dispatch(
-      SET_BUS_DATA({
+      SET_FORM_DATA({
         name: data.username,
         password: data.password,
         email: data.email,

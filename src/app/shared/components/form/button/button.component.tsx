@@ -43,6 +43,7 @@ const FormButton = (props: ButtonProps) => {
         startIcon={hasIcon && iconPos === "start" && icon}
         endIcon={hasIcon && iconPos === "end" && icon}
         component={isUploadBtn ? "label" : "button"}
+        sx={{ ...rest.sx }}
       >
         <>
           {isUploadBtn && uploadType}

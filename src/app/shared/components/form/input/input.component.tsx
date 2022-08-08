@@ -38,7 +38,7 @@ const FormInput = <TFieldValues extends FieldValues>(
           return (
             <TextField
               {...field}
-              value={field.value}
+              value={field.value || ""}
               label={label}
               id={label}
               placeholder={`Please enter your ${label}`}

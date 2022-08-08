@@ -48,7 +48,7 @@ const FormCheckbox = (props: CheckboxProps<FieldValues>) => {
                   <Checkbox
                     {...field}
                     checked={!!field.value}
-                    value={field.value}
+                    value={field.value || false}
                     onChange={() => {
                       field.onChange(!field.value);
                     }}

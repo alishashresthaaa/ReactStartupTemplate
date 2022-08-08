@@ -3,7 +3,7 @@ import { useLocalStorage } from "shared/hooks/useLocalStorage";
 
 const SideNavContext = createContext<any>(null);
 
-export const SideNavProvoder = ({ children }: any) => {
+export const SideNavProvider = ({ children }: any) => {
   const [sidenav, setSideNav] = useLocalStorage("sidenav", false);
 
   // call this function to open drawer
