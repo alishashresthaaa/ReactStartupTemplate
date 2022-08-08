@@ -21,11 +21,19 @@ export const headerMenuLinks: HeaderMenuLinksType[] = [
     to: "/examples/button",
   },
   {
-    label: "List",
-    to: "/examples/list",
+    label: "Redux ",
+    to: "/examples/state",
   },
   {
-    label: "Table",
-    to: "/examples/table",
+    label: "Query ",
+    to: "/examples/query",
   },
+  // {
+  //   label: "List",
+  //   to: "/examples/list",
+  // },
+  // {
+  //   label: "Table",
+  //   to: "/examples/table",
+  // },
 ];

@@ -16,7 +16,7 @@ const FormWrapper = (props: FormWrapperProps) => {
       sx={{
         ...sx,
         paddingTop: !disableTop ? "0.7rem" : "0rem",
-        paddingBottom: !disableBottom ? "0.2rem" : "0rem",
+        paddingBottom: !disableBottom ? "0.7rem" : "0rem",
         alignItems: alignItems,
         justifyContent: justifyContent,
       }}
