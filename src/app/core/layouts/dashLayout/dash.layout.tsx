@@ -1,10 +1,17 @@
 import Box from "@mui/material/Box";
 import Footer from "core/components/footer/footer.component";
 import Header from "core/components/header/header.component";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import React from "react";
+import { useAuth } from "core/utils/auth";
 
 const DashLayout = () => {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Navigate to="/auth/login" />;
+  }
+
   return (
     <Box
       sx={{
