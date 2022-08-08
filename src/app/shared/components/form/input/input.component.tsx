@@ -50,8 +50,9 @@ const FormInput = (props: InputProps) => {
               }
               error={fieldState.invalid}
               helperText={
-                fieldState?.error?.message &&
-                `${fieldState?.error?.message + " "}`
+                fieldState?.error?.message
+                  ? `${fieldState?.error?.message + " "}`
+                  : " "
               }
               multiline={rest.multiline || false}
               rows={rest.rows || "4"}
@@ -81,7 +82,10 @@ const FormInput = (props: InputProps) => {
                   ) : null,
               }}
               sx={{ ...sx }}
-              InputLabelProps={{ sx: { ...inputLabelStyles } }}
+              InputLabelProps={{
+                sx: { ...inputLabelStyles },
+                shrink: true,
+              }}
               FormHelperTextProps={{ sx: { ...inputHelperTextStyles } }}
               className={`${className} `}
               variant={rest.variant || "outlined"}

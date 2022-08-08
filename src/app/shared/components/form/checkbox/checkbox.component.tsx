@@ -64,8 +64,9 @@ const FormCheckbox = (props: CheckboxProps) => {
                 }
               ></FormControlLabel>
               <FormHelperText error={fieldState.invalid}>
-                {fieldState?.error?.message &&
-                  `${fieldState?.error?.message + " "}`}
+                {fieldState?.error?.message
+                  ? `${fieldState?.error?.message + " "}`
+                  : " "}
               </FormHelperText>
             </FormControl>
           );

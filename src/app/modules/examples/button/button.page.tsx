@@ -4,10 +4,10 @@ import FormButton from "shared/components/form/button/button.component";
 
 const ButtonExample = () => {
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid container rowSpacing={1} columnSpacing={6}>
       {buttonList.map((button: any, index: any) => {
         return (
-          <Grid xs={1} sm={2} md={2} item key={index}>
+          <Grid xs={1} sm={2} md={3} item key={index}>
             <FormButton
               name={button.label}
               variant={button.variant}
@@ -17,6 +17,9 @@ const ButtonExample = () => {
               iconPos={button.iconPos}
               icon={button.icon}
               isUploadBtn={button.isUploadBtn}
+              uploadType={button.uploadType}
+              loader={button.loader}
+              disabled={button.disabled}
             />
           </Grid>
         );

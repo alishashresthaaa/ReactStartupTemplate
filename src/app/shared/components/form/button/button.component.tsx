@@ -45,15 +45,29 @@ const FormButton = (props: ButtonProps) => {
         onClick={onClick}
         sx={{
           ...sx,
-          background: rest.variant === "text" ? "none" : "default",
         }}
         className={`${className} ${styles["button"]}`}
         startIcon={hasIcon && iconPos === "start" && icon}
         endIcon={hasIcon && iconPos === "end" && icon}
+        component={isUploadBtn ? "label" : "button"}
       >
         <>
           {isUploadBtn && uploadType}
-          {loader && <CircularProgress size="1rem" color="inherit" />} {name}
+          {loader && (
+            <span
+              style={{
+                fontSize: "1rem",
+                marginRight: "1rem",
+                display: "inline-flex",
+                alignItems: "center",
+                zIndex: "99",
+              }}
+            >
+              <CircularProgress size="1rem" color="inherit" />
+            </span>
+          )}
+
+          {name}
         </>
       </Button>
     </FormWrapper>

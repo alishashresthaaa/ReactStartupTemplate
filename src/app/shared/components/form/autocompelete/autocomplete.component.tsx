@@ -32,7 +32,9 @@ const FormAutocomplete = (props: AutocompleteProps) => {
                   label={label}
                   error={!!fieldState.error}
                   helperText={
-                    fieldState.error ? fieldState.error.message : null
+                    fieldState.error
+                      ? `${fieldState?.error?.message + " "}`
+                      : " "
                   }
                 />
               )}
