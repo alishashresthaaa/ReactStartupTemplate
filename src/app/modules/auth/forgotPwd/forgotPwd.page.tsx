@@ -6,7 +6,7 @@ import FormLink from "shared/components/form/link/link.component";
 import { useNavigate } from "react-router-dom";
 import ForgotPwdTypes, { forgotPwdSchema } from "./forgotPwd.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Control, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 const ForgotPwdPage = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const ForgotPwdPage = () => {
             type="text"
             name="email"
             label="Email"
-            control={control}
+            control={control as unknown as Control<FieldValues, object>}
             fullWidth
           />
           <FormButton name="Send mail" value="Submit" fullWidth />

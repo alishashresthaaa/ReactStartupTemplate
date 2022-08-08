@@ -2,12 +2,14 @@ import { IconButton } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import FormWrapper from "../wrapper/wrapper.component";
 import InputProps from "./input.types";
 
-const FormInput = (props: InputProps) => {
+const FormInput = <TFieldValues extends FieldValues>(
+  props: InputProps<TFieldValues>
+) => {
   const {
     label,
     value,
@@ -17,10 +19,6 @@ const FormInput = (props: InputProps) => {
     hasIcon = false,
     iconPos = "end",
     icon,
-    sx,
-    className,
-    inputLabelStyles,
-    inputHelperTextStyles,
     ...rest
   } = props;
 
@@ -36,23 +34,22 @@ const FormInput = (props: InputProps) => {
         name={name}
         control={rest.control}
         defaultValue={rest.defaultValue}
-        render={({ field, fieldState, formState }) => {
+        render={({ field, fieldState }) => {
           return (
             <TextField
               {...field}
-              ref={field.ref}
-              value={value}
+              value={field.value || ""}
               label={label}
               id={label}
               placeholder={`Please enter your ${label}`}
               type={
                 type !== "password" ? type : showPassword ? "text" : "password"
               }
-              error={fieldState.invalid}
+              error={!!fieldState.error}
               helperText={
-                fieldState?.error?.message
+                !!fieldState.error
                   ? `${fieldState?.error?.message + " "}`
-                  : " "
+                  : (rest.helperText = " ")
               }
               multiline={rest.multiline || false}
               rows={rest.rows || "4"}
@@ -81,13 +78,9 @@ const FormInput = (props: InputProps) => {
                     <InputAdornment position={iconPos}>{icon}</InputAdornment>
                   ) : null,
               }}
-              sx={{ ...sx }}
               InputLabelProps={{
-                sx: { ...inputLabelStyles },
-                shrink: true,
+                shrink: rest.shrink,
               }}
-              FormHelperTextProps={{ sx: { ...inputHelperTextStyles } }}
-              className={`${className} `}
               variant={rest.variant || "outlined"}
               fullWidth={rest.fullWidth || true}
               color={color}

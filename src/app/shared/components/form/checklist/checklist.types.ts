@@ -1,17 +1,19 @@
-import CheckboxProps from "../checkbox/checkbox.types";
-import FormCommonTypes from "../types/common.types";
-import FormEventTypes from "../types/events.type";
+import { CheckboxProps as MuiCheckboxProps } from "@mui/material";
+import { FormControlProps as MuiFormControlProps } from "@mui/material/FormControl";
+import HookFormProps from "../types/hookform.types";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
-export default interface CheckListProps
-  extends FormCommonTypes,
-    FormEventTypes,
-    FormWrapperProps {
+export default interface CheckListProps<T>
+  extends FormWrapperProps,
+    HookFormProps<T>,
+    Pick<MuiFormControlProps, "disabled" | "error" | "fullWidth" | "required"> {
   name: string;
   checklistLabel: string;
-  checklist: any[];
-  error?: boolean;
+  checklist: MuiCheckboxProps[];
   helperText?: string;
-  required?: boolean;
-  setValue?: (name: any, selectedItem: any) => void;
+  defaultValue?: any;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLButtonElement | any>,
+    ...args: any[]
+  ) => void;
 }

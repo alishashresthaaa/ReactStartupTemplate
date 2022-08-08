@@ -4,12 +4,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormLabel from "@mui/material/FormLabel";
-import React, { useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
+import React, { useCallback, useMemo } from "react";
+import { FieldValues, useController } from "react-hook-form";
 import FormWrapper from "../wrapper/wrapper.component";
 import CheckListProps from "./checklist.types";
 
-const FormCheckList = (props: CheckListProps) => {
+const FormCheckList = (props: CheckListProps<FieldValues>) => {
   const {
     name,
     checklistLabel,
@@ -19,28 +19,42 @@ const FormCheckList = (props: CheckListProps) => {
     disableBottom = false,
     disableTop = false,
     control,
-    setValue,
-    trigger,
+    helperText: helperTextValue = " ",
     ...rest
   } = props;
 
-  const [selectedItems, setSelectedItems] = useState<any>([]);
+  const {
+    field: { value = [], onChange },
+    fieldState: { error },
+  } = useController({
+    name,
+    control,
+  });
+
+  const helperText = useMemo(
+    () => (error ? error.message : helperTextValue),
+    [helperTextValue, error]
+  );
 
   // handling selection manually
-  const handleSelect = (value: any) => {
-    const isPresent = selectedItems.indexOf(value);
-    if (isPresent !== -1) {
-      const remaining = selectedItems.filter((item: any) => item !== value);
-      setSelectedItems(remaining);
-    } else {
-      setSelectedItems((previtems: any) => [...previtems, value]);
-    }
-  };
+  const handleSelect = useCallback(
+    (item: any, checked: boolean) => {
+      let newSelection = [...value];
+      if (checked) {
+        newSelection.push(item);
+      } else {
+        newSelection = value.filter((i: any) => i !== item);
+      }
 
-  // we are setting form value manually here
-  useEffect(() => {
-    setValue && setValue(name, selectedItems);
-  }, [selectedItems, control]);
+      onChange(newSelection);
+
+      if (typeof rest.onChange === "function") {
+        rest.onChange({} as any, newSelection);
+      }
+    },
+    // eslint-disable-next-line
+    [value, rest.onChange]
+  );
 
   return (
     <FormWrapper
@@ -48,59 +62,38 @@ const FormCheckList = (props: CheckListProps) => {
       disableTop={disableTop}
       sx={{ width: "max-content" }}
     >
-      <Controller
-        name={name}
-        control={control}
-        render={({ field, fieldState, formState }) => {
-          return (
-            <FormControl
-              component="fieldset"
-              variant="standard"
-              required={required}
-              fullWidth={fullWidth}
-              error={name in formState?.errors ? true : false}
-            >
-              <FormLabel>{checklistLabel}</FormLabel>
-              <FormGroup aria-label="position" row>
-                {checklist.map((option: any) => {
-                  return (
-                    <FormControlLabel
-                      label={option.label}
-                      labelPlacement={option.labelPlacement}
-                      disabled={option.disabled}
-                      key={option.value}
-                      control={
-                        <Controller
-                          name={name}
-                          control={control}
-                          render={({ field, fieldState, formState }) => {
-                            return (
-                              <Checkbox
-                                {...field}
-                                checked={selectedItems.includes(option.value)}
-                                onChange={() => {
-                                  handleSelect(option.value);
-                                  // trigger();
-                                }}
-                                value={field.value}
-                              />
-                            );
-                          }}
-                        />
-                      }
-                    />
-                  );
-                })}
-              </FormGroup>
-              <FormHelperText error={name in formState?.errors ? true : false}>
-                {name in formState?.errors
-                  ? `${fieldState.error?.message + " "}`
-                  : " "}
-              </FormHelperText>
-            </FormControl>
-          );
-        }}
-      />
+      <FormControl
+        component="fieldset"
+        variant="standard"
+        required={required}
+        fullWidth={fullWidth}
+        error={!!error}
+      >
+        <FormLabel>{checklistLabel}</FormLabel>
+        <FormGroup aria-label="position" row>
+          {checklist.map((option: any) => {
+            const checked = value.includes(option.value);
+            return (
+              <FormControlLabel
+                label={option.label}
+                labelPlacement={option.labelPlacement}
+                disabled={option.disabled}
+                key={option.value}
+                control={
+                  <Checkbox
+                    value={option.value}
+                    checked={checked}
+                    onChange={() => {
+                      handleSelect(option.value, !checked);
+                    }}
+                  />
+                }
+              />
+            );
+          })}
+        </FormGroup>
+        <FormHelperText error={!!error}>{helperText}</FormHelperText>
+      </FormControl>
     </FormWrapper>
   );
 };

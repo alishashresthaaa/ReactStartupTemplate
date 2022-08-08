@@ -21,7 +21,11 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   //  Memoised (cache) the value until the dependency change
-  const value = useMemo(() => ({ user, login, logout }), [user, login, logout]);
+  const value = useMemo(
+    () => ({ user, login, logout }),
+    // eslint-disable-next-line
+    [user]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 import { useAuth } from "core/utils/auth";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Control, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, Navigate } from "react-router-dom";
 import FormButton from "shared/components/form/button/button.component";
 import FormInput from "shared/components/form/input/input.component";
@@ -39,14 +39,14 @@ const LoginPage = () => {
               type="text"
               name="username"
               label="Username"
-              control={control}
+              control={control as unknown as Control<FieldValues, object>}
               fullWidth
             />
             <FormInput
               type="password"
               name="password"
               label="Password"
-              control={control}
+              control={control as unknown as Control<FieldValues, object>}
               fullWidth
             />
             <FormLink

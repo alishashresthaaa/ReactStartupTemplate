@@ -1,14 +1,13 @@
 import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import React from "react";
-import { Controller } from "react-hook-form";
-import FormWrapper from "../wrapper/wrapper.component";
-import styles from "./checkbox.module.scss";
-import CheckboxProps from "./checkbox.types";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+import React from "react";
+import { Controller, FieldValues } from "react-hook-form";
+import FormWrapper from "../wrapper/wrapper.component";
+import CheckboxProps from "./checkbox.types";
 
-const FormCheckbox = (props: CheckboxProps) => {
+const FormCheckbox = (props: CheckboxProps<FieldValues>) => {
   const {
     label,
     labelPlacement = "end",
@@ -32,13 +31,13 @@ const FormCheckbox = (props: CheckboxProps) => {
       <Controller
         name={name}
         control={control}
-        render={({ field, fieldState, formState }) => {
+        render={({ field, fieldState }) => {
           return (
             <FormControl
               component="fieldset"
               variant="standard"
               required={rest.required || true}
-              error={fieldState.invalid}
+              error={!!fieldState.error}
               fullWidth={rest.fullWidth || true}
             >
               <FormControlLabel
@@ -49,24 +48,21 @@ const FormCheckbox = (props: CheckboxProps) => {
                   <Checkbox
                     {...field}
                     checked={!!field.value}
-                    value={field.value}
+                    value={field.value || false}
                     onChange={() => {
                       field.onChange(!field.value);
-                      // onChange();
                     }}
                     size={size}
-                    sx={{ ...sx }}
-                    className={`${styles["checkbox"]}`}
                     color={color}
                     icon={icon}
                     checkedIcon={checkedIcon}
                   />
                 }
               ></FormControlLabel>
-              <FormHelperText error={fieldState.invalid}>
-                {fieldState?.error?.message
+              <FormHelperText error={!!fieldState.error}>
+                {!!fieldState.error
                   ? `${fieldState?.error?.message + " "}`
-                  : " "}
+                  : (rest.helperText = " ")}
               </FormHelperText>
             </FormControl>
           );

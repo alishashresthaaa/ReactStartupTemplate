@@ -1,47 +1,21 @@
-import { SxProps, Theme } from "@mui/material/styles";
-import { ReactNode } from "react";
-import { Control, FieldError } from "react-hook-form";
-import FormCommonTypes from "../types/common.types";
-import FormEventTypes from "../types/events.type";
+import { InputLabelProps as MuiInputLabelProps } from "@mui/material/InputLabel";
+import { BaseTextFieldProps as MuiBaseTextFieldProps } from "@mui/material/TextField";
+import { FieldPathValue, FieldValues, Path } from "react-hook-form";
+import HookFormProps from "../types/hookform.types";
+import HasIconProps from "../types/icon.types";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
-export default interface InputProps
-  extends FormCommonTypes,
-    FormEventTypes,
-    FormWrapperProps {
-  // basic
-  label?: string;
-  value?: string;
-  type?: string;
-  name: string;
+export default interface InputProps<TFieldValues extends FieldValues>
+  extends MuiBaseTextFieldProps,
+    Pick<MuiInputLabelProps, "shrink">,
+    HasIconProps,
+    FormWrapperProps,
+    HookFormProps<TFieldValues> {
+  name: Path<TFieldValues>;
+  label: string;
+  defaultValue?: FieldPathValue<TFieldValues, Path<TFieldValues>>;
 
   // variant
   variant?: "outlined" | "filled" | "standard";
-  fullWidth?: boolean;
-  color?: "success" | "error" | "warning";
-
-  // attributes
-  required?: boolean;
-  disabled?: boolean;
-  autoFocus?: boolean;
-  autoComplete?: "on" | "off";
-
-  // extras
-  defaultValue?: string;
-
-  // for textarea
-  multiline?: boolean;
-  rows?: number;
-
-  // has icon
-  hasIcon?: boolean;
-  iconPos?: "start" | "end";
-  icon?: ReactNode;
-
-  //   styles
-  inputLabelStyles?: SxProps<Theme>;
-  inputHelperTextStyles?: SxProps<Theme>;
-
-  // For react hook form
-  control?: any;
+  helperText?: string;
 }

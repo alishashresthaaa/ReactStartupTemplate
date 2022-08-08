@@ -1,21 +1,23 @@
-import FormCommonTypes from "../types/common.types";
-import FormEventTypes from "../types/events.type";
+import { FormControlProps as MuiFormControlProps } from "@mui/material/FormControl";
+import { FormControlLabelProps as MuiFormControlLabelProps } from "@mui/material/FormControlLabel";
+import { RadioProps as MuiRadioProps } from "@mui/material/Radio";
+import { RadioGroupProps as MuiRadioGroupProps } from "@mui/material/RadioGroup";
+import HookFormProps from "../types/hookform.types";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
-export interface RadioProps
-  extends FormCommonTypes,
-    FormEventTypes,
-    FormWrapperProps {
+export interface RadioProps<T>
+  extends FormWrapperProps,
+    HookFormProps<T>,
+    Pick<MuiFormControlProps, "disabled" | "error" | "fullWidth" | "required">,
+    MuiRadioGroupProps {
   radioButtonLabel: string;
   radioList: RadioButtonProps[];
-  value?: string;
-  defaultValue?: string;
+  name: string;
+  helperText?: string;
 }
 
-export interface RadioButtonProps {
-  label: string;
-  labelPlacement?: "top" | "start" | "bottom" | "end";
+export interface RadioButtonProps
+  extends MuiRadioProps,
+    Pick<MuiFormControlLabelProps, "label" | "labelPlacement"> {
   value: string;
-  disabled?: boolean;
-  color?: "default" | "success" | "error";
 }

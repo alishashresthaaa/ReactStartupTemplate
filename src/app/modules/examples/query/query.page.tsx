@@ -34,9 +34,9 @@ const QueryExample = () => {
 
       {isPostError && <Container>{(postsError as Error).message}</Container>}
 
-      {posts?.map((posts: any) => {
+      {posts?.map((posts: any, index: number) => {
         return (
-          <div>
+          <div key={index}>
             <Link to={`/examples/query/${posts.id}`}>{posts.title}</Link>
           </div>
         );

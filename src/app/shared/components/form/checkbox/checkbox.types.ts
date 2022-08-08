@@ -1,28 +1,15 @@
-import { ReactNode } from "react";
-import FormCommonTypes from "../types/common.types";
-import FormEventTypes from "../types/events.type";
+import { CheckboxProps as MuiCheckboxProps } from "@mui/material";
+import { FormControlProps as MuiFormControlProps } from "@mui/material/FormControl";
+import { FormControlLabelProps as MuiFormControlLabelProps } from "@mui/material/FormControlLabel";
+import HookFormProps from "../types/hookform.types";
 import FormWrapperProps from "../wrapper/wrapper.types";
 
-export default interface CheckboxProps
-  extends FormCommonTypes,
-    FormEventTypes,
-    FormWrapperProps {
-  // basic
-  label: string;
-  labelPlacement?: "top" | "start" | "bottom" | "end";
-  value?: boolean | string;
-
-  // variant
-  size?: "small" | "medium";
-  color?: "default" | "error" | "success" | "secondary";
-
-  // attributes
-  defaultChecked?: boolean;
-
-  //   icon
-  icon?: ReactNode;
-  checkedIcon?: ReactNode;
-
-  //   control the checkbox
-  checked?: boolean; // with help of onChange
+export default interface CheckboxProps<T>
+  extends FormWrapperProps,
+    HookFormProps<T>,
+    MuiCheckboxProps,
+    Pick<MuiFormControlProps, "disabled" | "error" | "fullWidth" | "required">,
+    Pick<MuiFormControlLabelProps, "label" | "labelPlacement"> {
+  name: string;
+  helperText?: string;
 }
