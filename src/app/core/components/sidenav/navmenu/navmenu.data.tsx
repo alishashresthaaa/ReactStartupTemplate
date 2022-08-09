@@ -49,6 +49,10 @@ export const navMenuItems = [
             icon: <TableRestaurantIcon />,
             items: [
               { name: "Basic Table", link: "/examples/table/basic-table" },
+              {
+                name: "Paginated Table",
+                link: "/examples/table/paginated-table",
+              },
             ],
           },
         ],

@@ -39,6 +39,9 @@ const SingleQueryExample = React.lazy(
 const BasicTableExample = React.lazy(
   () => import("modules/examples/tables/basicTable/basicTable.page")
 );
+const PaginatedTableExample = React.lazy(
+  () => import("modules/examples/tables/paginatedTable/paginatedTable.page")
+);
 
 export const exampleRoutes: RouteObject[] = [
   {
@@ -57,6 +60,7 @@ export const exampleRoutes: RouteObject[] = [
       { path: "query/:id", element: <SingleQueryExample /> },
       { path: "list", element: <NotFoundPage /> },
       { path: "table/basic-table", element: <BasicTableExample /> },
+      { path: "table/paginated-table", element: <PaginatedTableExample /> },
     ],
   },
 ];
